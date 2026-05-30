@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ALGOcas GTM Strategy Brief · Vieu · May 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink:       #1A1818;
+    --ink-mid:   #3D3A3A;
+    --ink-soft:  #7A7575;
+    --rule:      #E2DFDC;
+    --paper:     #F8F6F3;
+    --white:     #FFFFFF;
+    --accent:    #7744FF;
+    --accent-lt: #EDE8FF;
+    --gold:      #B8892A;
+    --gold-lt:   #FDF5E4;
+    --red:       #C0392B;
+    --green:     #1D7A4A;
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans:  'DM Sans', system-ui, sans-serif;
+    --max:   860px;
+  }
+
+  html { font-size: 16px; }
+  body { font-family: var(--sans); background: var(--paper); color: var(--ink); line-height: 1.65; -webkit-font-smoothing: antialiased; }
+
+  .page { max-width: var(--max); margin: 0 auto; padding: 0 40px 80px; }
+
+  /* Cover */
+  .cover { padding: 72px 0 56px; border-bottom: 1px solid var(--ink); margin-bottom: 56px; }
+  .cover-eyebrow { font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+  .cover-eyebrow::before { content: ''; display: block; width: 24px; height: 1.5px; background: var(--accent); }
+  .cover-title { font-family: var(--serif); font-size: clamp(44px, 6vw, 62px); line-height: 1.07; color: var(--ink); margin-bottom: 10px; }
+  .cover-title em { font-style: italic; color: var(--accent); }
+  .cover-sub { font-size: 17px; color: var(--ink-mid); font-weight: 300; margin-bottom: 36px; max-width: 560px; }
+  .cover-meta { display: flex; gap: 32px; flex-wrap: wrap; }
+  .cover-meta-item { display: flex; flex-direction: column; gap: 2px; }
+  .cover-meta-label { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); }
+  .cover-meta-value { font-size: 13px; font-weight: 500; color: var(--ink); }
+
+  /* Sections */
+  .section { margin-bottom: 64px; }
+  .section + .section { padding-top: 48px; border-top: 1px solid var(--rule); }
+  .section-number { font-size: 10px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+  .section-title { font-family: var(--serif); font-size: 28px; line-height: 1.18; color: var(--ink); margin-bottom: 20px; }
+  .section-intro { font-size: 15px; color: var(--ink-mid); line-height: 1.7; max-width: 680px; margin-bottom: 28px; }
+
+  /* Stat strip */
+  .stat-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; margin-bottom: 40px; }
+  .stat-cell { background: var(--white); padding: 24px 22px; }
+  .stat-num { font-family: var(--serif); font-size: 36px; line-height: 1; color: var(--accent); margin-bottom: 6px; }
+  .stat-label { font-size: 12px; font-weight: 500; color: var(--ink-soft); line-height: 1.4; }
+
+  /* Pull quote */
+  .pull-quote { border-left: 3px solid var(--accent); padding: 16px 24px; background: var(--accent-lt); border-radius: 0 6px 6px 0; margin: 28px 0; }
+  .pull-quote p { font-family: var(--serif); font-size: 18px; line-height: 1.5; color: var(--ink); font-style: italic; }
+  .pull-quote cite { display: block; margin-top: 8px; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); font-style: normal; }
+
+  /* Cards */
+  .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .cards.three { grid-template-columns: repeat(3, 1fr); }
+  .card { background: var(--white); border: 1px solid var(--rule); border-radius: 8px; padding: 22px 20px; }
+  .card-eyebrow { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+  .card-title { font-family: var(--serif); font-size: 17px; line-height: 1.25; margin-bottom: 10px; color: var(--ink); }
+  .card-body { font-size: 13px; color: var(--ink-mid); line-height: 1.65; }
+  .card.accent-top { border-top: 3px solid var(--accent); }
+
+  /* Two-col */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  .two-col.wide { grid-template-columns: 2fr 1fr; }
+
+  /* Tags */
+  .tag-group { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .tag { font-size: 11.5px; font-weight: 500; padding: 4px 12px; border-radius: 20px; background: var(--white); border: 1px solid var(--rule); color: var(--ink-mid); }
+  .tag.tier1 { background: var(--accent); color: var(--white); border-color: var(--accent); font-weight: 600; }
+  .tag.tier2 { background: var(--accent-lt); color: var(--accent); border-color: var(--accent); }
+
+  /* Tables */
+  .data-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 8px; }
+  .data-table th { text-align: left; font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white); background: var(--ink); padding: 10px 14px; border: none; }
+  .data-table td { padding: 10px 14px; border-bottom: 1px solid var(--rule); vertical-align: top; color: var(--ink-mid); line-height: 1.55; }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table tr:nth-child(even) td { background: var(--white); }
+  .data-table tr:nth-child(odd) td { background: var(--paper); }
+  .data-table td strong { color: var(--ink); font-weight: 600; }
+
+  /* Priority list */
+  .priority-list { counter-reset: priority; list-style: none; }
+  .priority-list li { counter-increment: priority; display: grid; grid-template-columns: 40px 1fr; gap: 16px; padding: 20px 0; border-bottom: 1px solid var(--rule); align-items: start; }
+  .priority-list li:last-child { border-bottom: none; }
+  .priority-list li::before { content: counter(priority, decimal-leading-zero); font-family: var(--serif); font-size: 24px; color: var(--accent); line-height: 1; margin-top: 2px; }
+  .priority-item-title { font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+  .priority-item-body { font-size: 13px; color: var(--ink-mid); line-height: 1.65; }
+
+  /* Competitor badges */
+  .comp-badge { display: inline-block; font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 8px; border-radius: 4px; }
+  .badge-threat { background: #FDECEA; color: var(--red); }
+  .badge-limited { background: #E9F7EF; color: var(--green); }
+  .badge-moderate { background: var(--gold-lt); color: var(--gold); }
+
+  /* Timeline */
+  .timeline { position: relative; padding-left: 28px; }
+  .timeline::before { content: ''; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 2px; background: var(--rule); }
+  .timeline-item { position: relative; margin-bottom: 28px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -25px; top: 4px; width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--accent); background: var(--paper); z-index: 1; }
+  .timeline-dot.filled { background: var(--accent); }
+  .timeline-phase { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
+  .timeline-head { font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 6px; }
+  .timeline-body { font-size: 13px; color: var(--ink-mid); line-height: 1.65; }
+
+  /* Vieu dark box */
+  .vieu-box { background: var(--ink); border-radius: 10px; padding: 32px 36px; color: var(--white); }
+  .vieu-box-label { font-size: 10px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+  .vieu-box h3 { font-family: var(--serif); font-size: 22px; color: var(--white); margin-bottom: 16px; line-height: 1.3; }
+  .vieu-box > p { font-size: 13.5px; color: rgba(255,255,255,0.72); line-height: 1.7; margin-bottom: 24px; }
+
+  /* Program objective pillars */
+  .pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 28px; }
+  .pillar { border: 1px solid rgba(255,255,255,0.18); border-radius: 6px; padding: 18px 16px; text-align: center; }
+  .pillar-text { font-size: 13.5px; font-weight: 600; color: var(--white); line-height: 1.35; }
+
+  /* Tier matrix */
+  .tier-matrix-wrap { position: relative; margin-top: 4px; overflow: visible; }
+  .tier1-highlight {
+    position: absolute;
+    top: -28px;
+    bottom: 0;
+    left: 55%;
+    width: calc(15% + 2px);
+    border: 2px solid var(--accent);
+    border-radius: 8px;
+    background: rgba(119,68,255,0.07);
+    pointer-events: none;
+    z-index: 2;
+  }
+  .tier1-highlight-label {
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    white-space: nowrap;
+    background: rgba(20,15,40,0.9);
+    border: 1px solid rgba(119,68,255,0.5);
+    border-radius: 20px;
+    padding: 2px 8px;
+  }
+  .tier-matrix { width: 100%; border-collapse: collapse; position: relative; }
+  .tier-matrix th { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 8px 12px; color: rgba(255,255,255,0.5); text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .tier-matrix th.label-col { text-align: left; width: 55%; }
+  .tier-matrix th.active-tier { color: var(--white); border-bottom: 2px solid var(--accent); }
+  .tier-matrix td { padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.07); vertical-align: middle; }
+  .tier-matrix tr:last-child td { border-bottom: none; }
+  .tier-matrix td.label-col { padding-left: 0; }
+  .tier-matrix td.check-col { text-align: center; }
+  .row-num { display: inline-block; background: rgba(119,68,255,0.35); color: var(--accent); font-size: 10px; font-weight: 700; width: 22px; height: 22px; line-height: 22px; text-align: center; border-radius: 4px; margin-right: 10px; flex-shrink: 0; }
+  .row-label-wrap { display: flex; align-items: flex-start; gap: 0; }
+  .row-label-inner { display: flex; flex-direction: column; }
+  .row-title { font-size: 13.5px; font-weight: 600; color: var(--white); margin-bottom: 2px; }
+  .row-desc { font-size: 11.5px; color: rgba(255,255,255,0.5); line-height: 1.4; }
+  .check { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; border: 1.5px solid var(--accent); border-radius: 4px; background: rgba(119,68,255,0.2); }
+  .check svg { width: 12px; height: 12px; stroke: var(--accent); stroke-width: 2.5; fill: none; }
+  .no-check { display: inline-block; width: 22px; height: 22px; }
+
+  /* Footer */
+  .doc-footer { padding-top: 36px; border-top: 1px solid var(--rule); display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px; margin-top: 64px; }
+  .footer-left { font-size: 12px; color: var(--ink-soft); line-height: 1.6; }
+  .footer-vieu { font-size: 22px; font-family: var(--serif); color: var(--ink-soft); }
+
+  @media print { body { background: white; } .page { padding: 0 0 48px; } .cover { padding: 48px 0 40px; } }
+  @media (max-width: 640px) {
+    .page { padding: 0 20px 60px; }
+    .cards, .cards.three, .two-col, .two-col.wide, .pillars { grid-template-columns: 1fr; }
+    .stat-strip { grid-template-columns: 1fr; }
+    .cover-title { font-size: 36px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- COVER -->
+  <div class="cover">
+    <div class="cover-eyebrow">GTM Strategy Brief</div>
+    <h1 class="cover-title">ALGOcas<br><em>Go-to-Market</em><br>Strategy</h1>
+    <p class="cover-sub">A structured framework for scaling enterprise access across the MENA region, moving from founder-led selling to a repeatable, intelligence-driven growth motion.</p>
+    <div class="cover-meta">
+      <div class="cover-meta-item">
+        <span class="cover-meta-label">Prepared by</span>
+        <span class="cover-meta-value">Vieu</span>
+      </div>
+      <div class="cover-meta-item">
+        <span class="cover-meta-label">Prepared for</span>
+        <span class="cover-meta-value">Oussama Elfout, Founding Director</span>
+      </div>
+      <div class="cover-meta-item">
+        <span class="cover-meta-label">Date</span>
+        <span class="cover-meta-value">May 2026</span>
+      </div>
+      <div class="cover-meta-item">
+        <span class="cover-meta-label">Engagement</span>
+        <span class="cover-meta-value">AWS BOX Tier 1 · 5 Month</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 01 THE MOMENT -->
+  <div class="section">
+    <div class="section-number">01</div>
+    <h2 class="section-title">The Market Moment</h2>
+    <p class="section-intro">MENA's enterprise cloud market is in a consolidation window. Organizations across Saudi Arabia, UAE, and Egypt are under simultaneous pressure to modernize infrastructure, operationalize AI, and meet new regulatory frameworks: SAMA in KSA, the UAE National AI Strategy, and Egypt's Digital Egypt program. The architecture decisions being made in the next 18 months will determine vendor relationships for the next decade.</p>
+
+    <div class="stat-strip">
+      <div class="stat-cell">
+        <div class="stat-num">$22B+</div>
+        <div class="stat-label">MENA cloud market by 2027<br>(CAGR ~20%)</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Priority markets:<br>KSA · UAE · Egypt</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">Now</div>
+        <div class="stat-label">Window to establish enterprise<br>relationships before SIs<br>lock in contracts</div>
+      </div>
+    </div>
+
+    <div class="pull-quote">
+      <p>"The organizations that help large MENA enterprises design their cloud and AI architecture today become irreplaceable partners, not vendors, for years."</p>
+      <cite>Strategic Context · AWS BOX Engagement</cite>
+    </div>
+  </div>
+
+  <!-- 02 POSITIONING -->
+  <div class="section">
+    <div class="section-number">02</div>
+    <h2 class="section-title">Who ALGOcas Is</h2>
+    <p class="section-intro">ALGOcas is not a generalist IT services firm. It is a production-focused cloud, data, and AI consultancy built specifically for the MENA enterprise, with AWS at the core and a deliberate emphasis on long-term operability over one-time delivery.</p>
+
+    <div class="cards three">
+      <div class="card accent-top">
+        <div class="card-eyebrow">Differentiation</div>
+        <div class="card-title">Architecture-Led, Not Feature-Led</div>
+        <div class="card-body">ALGOcas designs platforms for reliability, security, and cost control from day one, not as afterthoughts. The emphasis on production readiness separates it from consultancies that build and exit.</div>
+      </div>
+      <div class="card accent-top">
+        <div class="card-eyebrow">Credibility</div>
+        <div class="card-title">AWS Advanced Partner with Proven Delivery</div>
+        <div class="card-body">AWS Advanced Partner status, SAMA-aligned regulatory delivery, and reference customers across KSA, UAE, and Egypt establish genuine regional credibility that most boutique firms lack.</div>
+      </div>
+      <div class="card accent-top">
+        <div class="card-eyebrow">Breadth</div>
+        <div class="card-title">Three Owned Products, Five Service Lines</div>
+        <div class="card-body">AlgoData Vault, AlgoI Outpost, and Amrny Bot give ALGOcas productized entry points beyond consulting engagements, creating recurring revenue potential alongside project work.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 03 THE GTM CHALLENGE -->
+  <div class="section">
+    <div class="section-number">03</div>
+    <h2 class="section-title">The GTM Challenge</h2>
+    <p class="section-intro">The constraint is not capability. ALGOcas has the technical depth, the certifications, and the case studies to compete for large enterprise mandates. The constraint is access: getting into the right rooms, with the right people, before the decision is already made.</p>
+
+    <div class="two-col">
+      <div>
+        <table class="data-table">
+          <thead>
+            <tr><th>Where It Works</th><th>Where It Stalls</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Founder relationship accounts</td><td>Accounts outside Oussama's personal network</td></tr>
+            <tr><td>Warm inbound via AWS and partners</td><td>Cold outreach to enterprise CIOs and CTOs</td></tr>
+            <tr><td>Mid-market organizations</td><td>Large enterprise with multi-party buying committees</td></tr>
+            <tr><td>Technical audience conversations</td><td>Getting to the economic buyer before SIs do</td></tr>
+            <tr><td>KSA (SAMA reference gives credibility)</td><td>UAE and Egypt at scale without local network density</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <div class="pull-quote" style="margin-top:0">
+          <p>"The firms that will win the next wave of MENA enterprise cloud aren't the ones with the best technical pitch. They're the ones who get to the CIO before the RFP is written."</p>
+          <cite>GTM Hypothesis · Vieu Analysis</cite>
+        </div>
+        <p style="font-size:13px; color: var(--ink-mid); line-height:1.7; margin-top:16px;">The goal of this engagement is not to generate more leads. It is to give ALGOcas's small, high-value team a structured way to identify warm paths into the accounts that matter, so time is spent where trust and buying intent already exist.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 04 TARGET MARKET -->
+  <div class="section">
+    <div class="section-number">04</div>
+    <h2 class="section-title">Target Market &amp; Buyer Personas</h2>
+    <p class="section-intro">ALGOcas sells to large enterprises undergoing cloud, data, or AI transformation, where architecture quality and regulatory compliance are material concerns. The buying group is senior, technical, and risk-conscious.</p>
+
+    <div class="two-col wide">
+      <div>
+        <p style="font-size:12px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:10px;">Tier 1 — Economic Buyers</p>
+        <div class="tag-group" style="margin-bottom:20px;">
+          <span class="tag tier1">CIO</span>
+          <span class="tag tier1">CTO</span>
+          <span class="tag tier1">Chief Digital Officer</span>
+          <span class="tag tier1">Chief Data Officer</span>
+        </div>
+        <p style="font-size:12px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:10px;">Tier 2 — Technical Buyers &amp; Influencers</p>
+        <div class="tag-group" style="margin-bottom:20px;">
+          <span class="tag tier2">VP Cloud Infrastructure</span>
+          <span class="tag tier2">Enterprise Architect</span>
+          <span class="tag tier2">Head of Data</span>
+          <span class="tag tier2">Head of AI</span>
+        </div>
+        <p style="font-size:12px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:10px;">Target Verticals</p>
+        <div class="tag-group">
+          <span class="tag">Financial Services</span>
+          <span class="tag">Public Sector</span>
+          <span class="tag">Real Estate</span>
+          <span class="tag">Retail / E-Commerce</span>
+          <span class="tag">Telecom</span>
+        </div>
+      </div>
+      <div>
+        <div class="card" style="margin-bottom:12px;">
+          <div class="card-eyebrow">Priority 1</div>
+          <div class="card-title">Saudi Arabia (KSA)</div>
+          <div class="card-body">Strongest foothold. SAMA-aligned delivery establishes regulatory credibility. NEOM, Vision 2030, and CITC mandates creating sustained cloud and AI demand across public and private sector.</div>
+        </div>
+        <div class="card" style="margin-bottom:12px;">
+          <div class="card-eyebrow">Priority 2</div>
+          <div class="card-title">UAE (Abu Dhabi / Dubai)</div>
+          <div class="card-body">HQ market. Dense enterprise concentration. UAE AI Strategy creating urgency at government-linked entities. Abu Dhabi financial services sector particularly active.</div>
+        </div>
+        <div class="card">
+          <div class="card-eyebrow">Priority 3</div>
+          <div class="card-title">Egypt (Cairo)</div>
+          <div class="card-body">Emerging enterprise cloud market. Lower competition from global SIs than Gulf markets. Cairo office provides cost-efficient delivery capacity.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 05 PRODUCTS -->
+  <div class="section">
+    <div class="section-number">05</div>
+    <h2 class="section-title">Product Positioning</h2>
+    <p class="section-intro">Three productized offerings create distinct entry points, each targeting a different buyer pain and a different phase of the enterprise cloud and AI journey.</p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>What It Solves</th>
+          <th>Primary Buyer</th>
+          <th>GTM Entry</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>AlgoData Vault</strong></td>
+          <td>Accelerates delivery of governed analytics foundations, removing the 12-18 month build timeline for a data lakehouse. Targets organizations stuck in data chaos across point solutions.</td>
+          <td>CDO, Head of Data, CIO</td>
+          <td>Discovery conversation about analytics maturity and close lead times. Strong hook in regulated sectors needing audit-ready data.</td>
+        </tr>
+        <tr>
+          <td><strong>AlgoI Outpost</strong></td>
+          <td>Enterprise AI knowledge assistant for on-prem and hybrid environments, designed for regulated organizations that cannot send data to public LLMs. Directly addresses SAMA and sovereign data requirements.</td>
+          <td>CIO, CISO, Head of AI, Enterprise Architect</td>
+          <td>Strongest wedge in banking and government. Lead with regulatory constraint, not AI features. "Your data never leaves your infrastructure."</td>
+        </tr>
+        <tr>
+          <td><strong>Amrny Automated Bot</strong></td>
+          <td>Generative AI automation that connects to existing systems for routine request execution, reducing operational load without requiring platform replacement.</td>
+          <td>CTO, COO, IT Director</td>
+          <td>Fastest path to a proof of concept. Low barrier to trial. Position as a measurable productivity layer, not a transformation program.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 06 COMPETITIVE POSITION -->
+  <div class="section">
+    <div class="section-number">06</div>
+    <h2 class="section-title">Competitive Position</h2>
+    <p class="section-intro">ALGOcas competes across two segments: global SIs who own the largest mandates, and regional specialists who compete for mid-to-large enterprise work. The winning argument is depth, speed, and regional accountability, not scale.</p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Competitor</th>
+          <th>Threat Level</th>
+          <th>Vulnerability</th>
+          <th>ALGOcas Counter</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Accenture / Deloitte MENA</strong></td>
+          <td><span class="comp-badge badge-threat">High</span></td>
+          <td>Cost-heavy delivery, slow mobilization, generic cloud practices not tuned to MENA regulatory context</td>
+          <td>Speed to delivery, AWS-native depth, SAMA credibility, architecture accountability post go-live</td>
+        </tr>
+        <tr>
+          <td><strong>IBM Consulting</strong></td>
+          <td><span class="comp-badge badge-moderate">Moderate</span></td>
+          <td>Declining cloud-native credibility, legacy reputation, slower to deploy modern AI tooling</td>
+          <td>AWS-first architecture vs. IBM's multi-cloud hedging; AlgoI Outpost vs. IBM Watson positioning</td>
+        </tr>
+        <tr>
+          <td><strong>Core42 / Injazat (G42)</strong></td>
+          <td><span class="comp-badge badge-threat">High (UAE / KSA Gov)</span></td>
+          <td>Heavy Abu Dhabi government focus leaves gaps in private-sector and mid-market enterprise</td>
+          <td>Private sector agility; commercial-grade delivery speed; non-government organizations have more freedom to choose</td>
+        </tr>
+        <tr>
+          <td><strong>Rackspace Technology</strong></td>
+          <td><span class="comp-badge badge-moderate">Moderate</span></td>
+          <td>Managed services player with limited bespoke data and AI delivery capability</td>
+          <td>Data Platform and AI expertise (AlgoData Vault, AlgoI) vs. Rackspace's infrastructure-only positioning</td>
+        </tr>
+        <tr>
+          <td><strong>Presight (UAE)</strong></td>
+          <td><span class="comp-badge badge-moderate">Moderate (Data/AI)</span></td>
+          <td>Analytics-focused, limited cloud infrastructure breadth</td>
+          <td>Full-stack cloud, data, and AI vs. Presight's analytics-only scope</td>
+        </tr>
+        <tr>
+          <td><strong>e&amp; enterprise</strong></td>
+          <td><span class="comp-badge badge-limited">Lower</span></td>
+          <td>Telco-origin firm, strong in connectivity and managed services, weaker in architecture consulting</td>
+          <td>Architecture-led consulting vs. e&amp;'s managed infrastructure positioning</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 07 GTM PRIORITIES -->
+  <div class="section">
+    <div class="section-number">07</div>
+    <h2 class="section-title">GTM Priorities: Next 90 Days</h2>
+    <p class="section-intro">The goal is not to run a broad campaign. It is to win the right 5-10 enterprise accounts in the next two quarters. Everything below is sequenced to maximize the probability of that outcome.</p>
+
+    <ul class="priority-list">
+      <li>
+        <div>
+          <div class="priority-item-title">Map and activate the network before the outreach starts</div>
+          <div class="priority-item-body">Provide Vieu with the leadership team LinkedIn CSV, Target Account List, and Introducer List within the first 7 days post kick-off. The quality of relationship mapping directly determines the quality of warm paths. This is the foundation everything else is built on.</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="priority-item-title">Prioritize KSA first: the SAMA reference is a genuine door-opener</div>
+          <div class="priority-item-body">SAMA-aligned delivery is a rare credential in the KSA market. Lead with it actively when approaching SAMA-regulated banks, insurance firms, and financial services enterprises. This is the clearest competitive differentiation from global SIs who lack deep KSA regulatory experience.</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="priority-item-title">Segment outreach by product, not by generic "cloud services"</div>
+          <div class="priority-item-body">Three separate entry conversations: AlgoI Outpost for regulated-sector CIOs and CISOs; AlgoData Vault for CDOs and analytics leads; Amrny for operational quick wins. Each has a different buyer and a different hook. Mixing them produces noise. Lead with one problem per conversation.</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="priority-item-title">Leverage Redington's regional network actively, not passively</div>
+          <div class="priority-item-body">Redington has existing enterprise relationships across the Gulf. Work Vieu's stakeholder maps against Redington's known accounts to identify overlap. These are the highest-probability warm path combinations. Don't wait for Redington to refer; bring them into specific account conversations.</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="priority-item-title">Build a repeatable account-entry playbook from the first 5 wins</div>
+          <div class="priority-item-body">Document what worked in the first wave of warm introductions: which persona responded, which product hook opened the conversation, which relationship pattern led to the meeting. This becomes the repeatable playbook for the sales team to operate independently of Oussama's direct involvement.</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- 08 VIEU ENGAGEMENT -->
+  <div class="section">
+    <div class="section-number">08</div>
+    <h2 class="section-title">The Vieu Engagement Plan</h2>
+
+    <div class="vieu-box">
+      <div class="vieu-box-label">Vieu · 5-Month AWS BOX Tier 1 Engagement</div>
+      <h3>Warm introduction paths into the accounts that matter, backed by the full intelligence stack.</h3>
+      <p>Vieu maps ALGOcas's extended company network across leadership, partners, and advisors against the target account list. The result is structured access: who can open the door at each account, the path to get there, and the context to make the conversation credible. From that foundation, Vieu layers in account intelligence, stakeholder maps, and technographic signals so every conversation is timed and positioned to win.</p>
+
+      <!-- Program objective pillars -->
+      <div class="pillars">
+        <div class="pillar">
+          <div class="pillar-text">Fast track decision maker access</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-text">Strategic account intelligence</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-text">Stakeholder intelligence</div>
+        </div>
+      </div>
+
+      <!-- Tier matrix -->
+      <div class="tier-matrix-wrap">
+      <div class="tier1-highlight"><div class="tier1-highlight-label">AWS Gift</div></div>
+      <table class="tier-matrix">
+        <thead>
+          <tr>
+            <th class="label-col"></th>
+            <th class="active-tier">Tier 1</th>
+            <th>Tier 2</th>
+            <th>Tier 3</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="label-col">
+              <div class="row-label-wrap">
+                <span class="row-num">01</span>
+                <div class="row-label-inner">
+                  <span class="row-title">Connection paths</span>
+                  <span class="row-desc">Accelerate decision maker access using your company's full network</span>
+                </div>
+              </div>
+            </td>
+            <td class="check-col"><span class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span></td>
+            <td class="check-col"><span class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span></td>
+            <td class="check-col"><span class="no-check"></span></td>
+          </tr>
+          <tr>
+            <td class="label-col">
+              <div class="row-label-wrap">
+                <span class="row-num">02</span>
+                <div class="row-label-inner">
+                  <span class="row-title">Account plan</span>
+                  <span class="row-desc">Deep account POV with contextual research aligned to your sales stages</span>
+                </div>
+              </div>
+            </td>
+            <td class="check-col"><span class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span></td>
+            <td class="check-col"><span class="no-check"></span></td>
+            <td class="check-col"><span class="no-check"></span></td>
+          </tr>
+          <tr>
+            <td class="label-col">
+              <div class="row-label-wrap">
+                <span class="row-num">03</span>
+                <div class="row-label-inner">
+                  <span class="row-title">Stakeholder map &amp; org chart</span>
+                  <span class="row-desc">Know the decision makers and influencers across all buying groups</span>
+                </div>
+              </div>
+            </td>
+            <td class="check-col"><span class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span></td>
+            <td class="check-col"><span class="no-check"></span></td>
+            <td class="check-col"><span class="no-check"></span></td>
+          </tr>
+          <tr>
+            <td class="label-col">
+              <div class="row-label-wrap">
+                <span class="row-num">04</span>
+                <div class="row-label-inner">
+                  <span class="row-title">Opportunities</span>
+                  <span class="row-desc">Identify trigger points where Vieu can drive outcomes for target accounts</span>
+                </div>
+              </div>
+            </td>
+            <td class="check-col"><span class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span></td>
+            <td class="check-col"><span class="no-check"></span></td>
+            <td class="check-col"><span class="no-check"></span></td>
+          </tr>
+          <tr>
+            <td class="label-col">
+              <div class="row-label-wrap">
+                <span class="row-num">05</span>
+                <div class="row-label-inner">
+                  <span class="row-title">Technographics</span>
+                  <span class="row-desc">Know who's using competitor or complementary tech, and in what context</span>
+                </div>
+              </div>
+            </td>
+            <td class="check-col"><span class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span></td>
+            <td class="check-col"><span class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span></td>
+            <td class="check-col"><span class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span></td>
+          </tr>
+          <tr>
+            <td class="label-col">
+              <div class="row-label-wrap">
+                <span class="row-num">06</span>
+                <div class="row-label-inner">
+                  <span class="row-title">Verified contact details</span>
+                  <span class="row-desc">Waterfall enrichment across multiple data vendors to maximize TAM coverage</span>
+                </div>
+              </div>
+            </td>
+            <td class="check-col"><span class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span></td>
+            <td class="check-col"><span class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span></td>
+            <td class="check-col"><span class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span></td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+
+    <!-- Timeline -->
+    <div style="margin-top: 36px;">
+      <div class="timeline">
+
+        <div class="timeline-item">
+          <div class="timeline-dot filled"></div>
+          <div class="timeline-phase">Week 1 · Foundation Ready</div>
+          <div class="timeline-head">Early connection signals surfaced and ready to act on</div>
+          <div class="timeline-body">The foundation is already built before the kick-off call. Vieu surfaces early connection signals across the target account list and the team can begin fine-tuning based on initial feedback. In most cases there is at least one warm path ready to act on in week one itself.</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot filled"></div>
+          <div class="timeline-phase">Week 2 · Prioritization and Trust Building</div>
+          <div class="timeline-head">List review, look-alikes, and sample account plans</div>
+          <div class="timeline-body">Together, we review the prioritization of the target list, surface look-alike accounts worth adding, and walk through sample account plans to build confidence in the intelligence quality. Actionable leads continue to surface throughout this week, not after it.</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot filled"></div>
+          <div class="timeline-phase">Week 3 · Programmatic Motion</div>
+          <div class="timeline-head">Intro orchestration and account planning at scale</div>
+          <div class="timeline-body">By week three we are ready to programmatize around the graph. Intro orchestration begins in earnest, account plans are live across the priority list, and the team has a repeatable process for working each warm path through to a conversation.</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-phase">Weeks 4-8 · Value Delivery</div>
+          <div class="timeline-head">Out of onboarding and into pipeline</div>
+          <div class="timeline-body">The engagement shifts from onboarding to full value delivery. The focus is ensuring every surfaced lead is actively worked and converting into qualified opportunities. Weekly rhythm tracks lead status, conversation progress, and any accounts needing a new angle or path.</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-phase">Weeks 9-12 · Scale and Embed</div>
+          <div class="timeline-head">Supporting active plays while building programmatic leverage</div>
+          <div class="timeline-body">With plays running across the pipeline, the focus expands to finding more programmatic ways to leverage the platform across sales, marketing, and revenue operations. The goal is a motion that compounds beyond the engagement window, not one that stops when the contract does.</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="doc-footer">
+    <div class="footer-left">
+      <strong>ALGOcas GTM Strategy Brief</strong><br>
+      Prepared by Vieu · May 2026 · Confidential<br>
+      Contact: Yagna Saravanan · yagna@vieu.com
+    </div>
+    <div class="footer-vieu">vieu</div>
+  </div>
+
+</div>
+</body>
+</html>
